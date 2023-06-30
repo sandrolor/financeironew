@@ -17,12 +17,27 @@ Route::prefix('login')->group(function(){
 
 Route::prefix('contas')->group(function(){
     Route::get('/', [ContasController::class, 'index'])->name('conta.index');
+    Route::get('/cadastrarConta', [ContasController::class, 'cadastrarConta'])->name('cadastrar.conta');
+    Route::post('/cadastrarConta', [ContasController::class, 'cadastrarConta'])->name('cadastrar.conta');
+    Route::get('/atualizarConta/{id}', [ContasController::class, 'atualizarConta'])->name('atualizar.conta');
+    Route::put('/atualizarConta/{id}', [ContasController::class, 'atualizarConta'])->name('atualizar.conta');
+    Route::delete('/delete/{id}', [ContasController::class, 'delete'])->name('conta.delete');
 });
 
 Route::prefix('categorias')->group(function(){
     Route::get('/', [CategoriasController::class, 'index'])->name('categoria.index');
+    Route::get('/cadastrarCategoria', [CategoriasController::class, 'cadastrarCategoria'])->name('cadastrar.categoria');
+    Route::post('/cadastrarCategoria', [CategoriasController::class, 'cadastrarCategoria'])->name('cadastrar.categoria');
+    Route::get('/atualizarCategoria/{id}', [CategoriasController::class, 'atualizarCategoria'])->name('atualizar.categoria');
+    Route::put('/atualizarCategoria/{id}', [CategoriasController::class, 'atualizarCategoria'])->name('atualizar.categoria');
+    Route::delete('/delete/{id}', [CategoriasController::class, 'delete'])->name('categoria.delete');
 });
 
 Route::prefix('movimentos')->group(function(){
     Route::get('/', [MovimentosController::class, 'index'])->name('movimento.index');
+    Route::get('/cadastrarMovimento', [MovimentosController::class, 'cadastrarMovimento'])->name('cadastrar.movimento');
+    Route::post('/cadastrarMovimento', [MovimentosController::class, 'cadastrarMovimento'])->name('cadastrar.movimento');
+    Route::get('/atualizarMovimento/{id}', [MovimentosController::class, 'atualizarMovimento'])->name('atualizar.movimento');
+    Route::put('/atualizarMovimento/{id}', [MovimentosController::class, 'atualizarMovimento'])->name('atualizar.movimento');
+    Route::delete('/delete/{id}', [MovimentosController::class, 'delete'])->name('movimento.delete');
 });

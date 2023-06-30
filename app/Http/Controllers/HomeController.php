@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Categoria;
+use App\Models\Conta;
+use App\Models\Movimento;
 
 class HomeController extends Controller
 {
     public function index(){
         if (auth()->check()){
             $usuario = auth()->user()->name;
-            return view('home', compact('usuario'));
+            $findConta = Conta::count();
+            $findCategoria = Categoria::count();
+            $findMovimento = Movimento::count();
+            return view('home', compact('findConta', 'findCategoria','findMovimento','usuario'));
         }else{
             return redirect()->route('login.index');
         }
