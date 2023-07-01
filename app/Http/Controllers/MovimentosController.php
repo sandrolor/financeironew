@@ -27,7 +27,15 @@ class MovimentosController extends Controller
             $findMovimento = $this->movimento->getMovimentosPesquisaIndex(search: $pesquisar ?? '', idConta: $contaId ?? '', from: $dataIni ?? '', to: $dataFim ?? '');
             $totalMov = Movimento::sum('valor');
             $totalFind = $findMovimento->sum('valor');
-            return view('movimentos.index', compact('findMovimento', 'totalMov', 'findConta','usuario','totalFind','pesquisar', 'dataIni','dataFim','contaId'));
+            if ($contaId != ""){
+                $descConta = Conta::find($contaId);
+                $ContaDesc = $descConta->nome;  
+            }else{
+                $ContaDesc = "";
+            }
+            
+            //dd($ContaDesc);
+            return view('movimentos.index', compact('findMovimento', 'totalMov', 'findConta','usuario','totalFind','pesquisar', 'dataIni','dataFim','contaId','ContaDesc'));
         }else{
             return redirect()->route('login.index');
         }

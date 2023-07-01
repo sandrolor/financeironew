@@ -10,22 +10,22 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="mb-3">
+                        <div class="col-2 mb-3">
                             <label class="form-label">Data</label>
                             <input type="date" class="form-control @error('data_mov') is-invalid @enderror" id="data_mov" name="data_mov" value="{{isset ($findMovimento->data_mov) ? $findMovimento->data_mov : old('data_mov')}}" autofocus>
                             @if ($errors->has('data_mov'))
                                 <div class="invalid-feedback">{{ $errors->first('data_mov') }}</div>                
                             @endif
                         </div>
-                        <div class="mb-3">
+                        <div class="col-8 mb-3">
                             <label class="form-label">Descrição</label>
                             <input type="text" class="form-control @error('descricao') is-invalid @enderror" id="descricao" name="descricao" value="{{isset ($findMovimento->descricao) ? $findMovimento->descricao : old('descricao')}}">
                             @if ($errors->has('descricao'))
                                 <div class="invalid-feedback">{{ $errors->first('descricao') }}</div>                
                             @endif
                         </div>
-
-                        <div class="mb-3">
+                        <div class="row g-2 align-items-center">
+                        <div class="col-4 mb-3">
                             <label class="form-label">Conta</label>
                             <select class="form-select @error('conta_id') is-invalid @enderror" name="conta_id" id="conta_id">
                                 <option selected value="{{isset ($findMovimento->conta->id) ? $findMovimento->conta->id : old('conta_id')}}">{{isset ($findMovimento->conta->nome) ? $findMovimento->conta->nome : old('conta_id')}}</option>
@@ -38,7 +38,7 @@
                             @endif
                         </div>
                 
-                        <div class="mb-3">
+                        <div class="col-4 mb-3">
                             <label class="form-label">Categoria</label>
                             <select class="form-select @error('categoria_id') is-invalid @enderror" aria-label="Default select example" name="categoria_id" id="categoria_id">
                                 <option selected value="{{isset ($findMovimento->categoria->id) ? $findMovimento->categoria->id : old('categoria_id')}}">{{isset ($findMovimento->categoria->nome) ? $findMovimento->categoria->nome : old('categoria_id')}}</option>
@@ -50,8 +50,8 @@
                                 <div class="invalid-feedback">{{ $errors->first('categoria_id') }}</div>                
                             @endif
                         </div>
-
-                        <div class="form-check form-check-inline">
+                        </div>
+                        <div class="form-check form-check-inline mb-3">
                             @if ($findMovimento->valor < 0)
                                 <input checked class="form-check-input" type="radio" name="tipoMov" id="inlineRadio1" value="D">    
                             @else
@@ -59,7 +59,7 @@
                             @endif
                             <label class="form-check-label" for="inlineRadio1">Despesa</label>
                           </div>
-                          <div class="form-check form-check-inline">
+                          <div class="form-check form-check-inline mb-3">
                             @if ($findMovimento->valor > 0)
                                 <input checked class="form-check-input" type="radio" name="tipoMov" id="inlineRadio2" value="R">
                             @else
@@ -68,7 +68,7 @@
                             <label class="form-check-label" for="inlineRadio2">Receita</label>
                           </div>
 
-                        <div class="mb-3">
+                        <div class="col-2 mb-3">
                             <label class="form-label">Valor</label>
                             <input type="text" class="form-control @error('valor') is-invalid @enderror" id="mascara_valor" name="valor" value="{{isset ($findMovimentoValor) ? $findMovimentoValor : old('valor')}}">
                             @if ($errors->has('valor'))

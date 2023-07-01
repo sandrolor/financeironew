@@ -7,10 +7,10 @@
                     <div class="card-header">{{ __('Movimentos') }}</div>
                     <div class="card-body">
                         <form action="{{ route('movimento.index') }}" method="GET" class="form-inline">
-                            <div class="form-group mx-sm-3 mb-2">
-                                <input type="text" class="form-control-sm col-2 m-1" name="pesquisar" id="pesquisar"
+                            <div class="form-group mx-sm-3">
+                                <input type="text" class="form-control-sm col-2 mb-3" name="pesquisar" id="pesquisar"
                                     placeholder="Digite o nome" />
-                                <select name="conta_id" class="form-control-sm col-2 m-1">
+                                <select name="conta_id" class="form-control-sm col-2 mb-3">
                                     <option selected></option>
                                     @foreach ($findConta as $Conta)
                                         <option value="{{ $Conta->id }}">{{ $Conta->nome }}</option>
@@ -18,7 +18,7 @@
                                 </select>
                                 <input type="date" class="form-control-sm col-2 m-1" name="data_ini" />
                                 <input type="date" class="form-control-sm col-2 m-1" name="data_fim" />
-                                <button class="btn btn-secondary">Pesquisar</button>
+                                <button class="btn btn-secondary mb-3">Pesquisar</button>
                                 <a href="{{ route('cadastrar.movimento') }}" type="button"
                                     class="btn btn-success float-end">Novo Movimento</a>
                             </div>
@@ -34,8 +34,7 @@
                                         <th scope="col">Descrição</th>
                                         <th scope="col">Conta</th>
                                         <th scope="col">Categoria</th>
-                                        <th scope="col">Valor | {{ 'R$' . ' ' . number_format($totalMov, 2, ',', '.') }}
-                                        </th>
+                                        <th scope="col">Valor</th>
                                         <th scope="col">Ações</th>
                                     </tr>
                                 </thead>
@@ -65,7 +64,7 @@
                                     
                                 </tbody>
                                 <div class="form-control">
-                                    Total Pesquisado: {{ 'R$' . ' ' . number_format($totalFind, 2, ',', '.') }} - {{ $pesquisar }} - De: {{ \Carbon\Carbon::parse($dataIni)->format('d/m/Y') }} a: {{ \Carbon\Carbon::parse($dataFim)->format('d/m/Y') }} - ContaId: {{ $contaId }}
+                                    Total Pesquisado: {{ 'R$' . ' ' . number_format($totalFind, 2, ',', '.') }} - {{ $pesquisar }} - De: {{ \Carbon\Carbon::parse($dataIni)->format('d/m/Y') }} a: {{ \Carbon\Carbon::parse($dataFim)->format('d/m/Y') }} - Conta: {{ $ContaDesc }}  | Saldo Total: {{ 'R$' . ' ' . number_format($totalMov, 2, ',', '.') }}
                                 </div>
                             </table>
                             <div class="py-4">
