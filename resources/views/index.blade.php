@@ -144,6 +144,8 @@
         </div>
     </main>
     @yield('scripts')
+    {{-- InputMask --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/color-modes.js"></script>
 </body>
