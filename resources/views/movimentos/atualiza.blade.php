@@ -12,7 +12,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Data</label>
-                            <input type="text" class="form-control @error('data_mov') is-invalid @enderror" id="data_mov" name="data_mov" value="{{isset ($findMovimento->data_mov) ? $findMovimento->data_mov : old('data_mov')}}" autofocus>
+                            <input type="date" class="form-control @error('data_mov') is-invalid @enderror" id="data_mov" name="data_mov" value="{{isset ($findMovimento->data_mov) ? $findMovimento->data_mov : old('data_mov')}}" autofocus>
                             @if ($errors->has('data_mov'))
                                 <div class="invalid-feedback">{{ $errors->first('data_mov') }}</div>                
                             @endif

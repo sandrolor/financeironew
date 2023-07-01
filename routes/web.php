@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::prefix('login')->group(function(){
-    Route::get('/', [LoginController::class, 'index'])->name('login.index');
-    Route::post('/', [LoginController::class, 'store'])->name('login.store');
-    Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
-});
+Route::get('/', [LoginController::class, 'index'])->name('login.index');
+Route::post('/', [LoginController::class, 'store'])->name('login.store');
+Route::get('/logout', [LoginController::class, 'destroy'])->name('login.destroy');
 
 Route::prefix('contas')->group(function(){
     Route::get('/', [ContasController::class, 'index'])->name('conta.index');
