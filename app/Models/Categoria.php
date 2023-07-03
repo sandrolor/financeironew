@@ -17,7 +17,7 @@ class Categoria extends Model
     public function getCategoriasPesquisaIndex(string $search = '')
     {
         Paginator::useBootstrap();
-        $categoria = $this->where(function($query) use($search){
+        $categoria = $this->where(function ($query) use ($search) {
             $query->where('nome', $search);
             $query->orwhere('nome', 'LIKE', "%{$search}%");
         })->orderBy('nome')->paginate(5);

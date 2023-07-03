@@ -17,7 +17,7 @@ class Conta extends Model
     public function getContasPesquisaIndex(string $search = '')
     {
         Paginator::useBootstrap();
-        $conta = $this->where(function($query) use($search){
+        $conta = $this->where(function ($query) use ($search) {
             $query->where('nome', $search);
             $query->orwhere('nome', 'LIKE', "%{$search}%");
         })->orderBy('nome')->paginate(5);

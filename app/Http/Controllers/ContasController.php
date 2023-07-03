@@ -14,15 +14,16 @@ class ContasController extends Controller
         $this->conta = $conta;
     }
 
-    public function index(Request $request){
-        if (auth()->check()){
+    public function index(Request $request)
+    {
+        if (auth()->check()) {
             $usuario = auth()->user()->name;
 
-            $pesquisar = $request->pesquisar; 
+            $pesquisar = $request->pesquisar;
             $findConta = $this->conta->getContasPesquisaIndex(search: $pesquisar ?? '');
 
-            return view('contas.index', compact('usuario','findConta'));
-        }else{
+            return view('contas.index', compact('usuario', 'findConta'));
+        } else {
             return redirect()->route('login.index');
         }
     }
@@ -35,7 +36,7 @@ class ContasController extends Controller
 
     public function cadastrarConta(FormRequestConta $request)
     {
-        if ($request->method()=="POST"){
+        if ($request->method() == "POST") {
             //cria os dados
             $data = $request->all();
             Conta::create($data);
@@ -45,8 +46,9 @@ class ContasController extends Controller
         return view('contas.create', compact('usuario'));
     }
 
-    public function atualizarConta(FormRequestConta $request, $id){
-        if ($request->method()=="PUT"){
+    public function atualizarConta(FormRequestConta $request, $id)
+    {
+        if ($request->method() == "PUT") {
             //atualiza os dados
             $data = $request->all();
             $buscaRegistro = Conta::find($id);
@@ -55,6 +57,6 @@ class ContasController extends Controller
         }
         $findConta = Conta::where('id', '=', $id)->first();
         $usuario = auth()->user()->name;
-        return view('contas.atualiza', compact('findConta','usuario'));
+        return view('contas.atualiza', compact('findConta', 'usuario'));
     }
 }

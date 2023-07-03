@@ -8,14 +8,15 @@ use App\Models\Movimento;
 
 class HomeController extends Controller
 {
-    public function index(){
-        if (auth()->check()){
+    public function index()
+    {
+        if (auth()->check()) {
             $usuario = auth()->user()->name;
             $findConta = Conta::count();
             $findCategoria = Categoria::count();
             $findMovimento = Movimento::count();
-            return view('home', compact('findConta', 'findCategoria','findMovimento','usuario'));
-        }else{
+            return view('home', compact('findConta', 'findCategoria', 'findMovimento', 'usuario'));
+        } else {
             return redirect()->route('login.index');
         }
     }

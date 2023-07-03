@@ -16,8 +16,9 @@ class MovimentosController extends Controller
     {
         $this->movimento = $movimento;
     }
-    public function index(Request $request){
-        if (auth()->check()){
+    public function index(Request $request)
+    {
+        if (auth()->check()) {
             $usuario = auth()->user()->name;
             $findConta = Conta::all();
             $pesquisar = $request->pesquisar;
@@ -27,16 +28,16 @@ class MovimentosController extends Controller
             $findMovimento = $this->movimento->getMovimentosPesquisaIndex(search: $pesquisar ?? '', idConta: $contaId ?? '', from: $dataIni ?? '', to: $dataFim ?? '');
             $totalMov = Movimento::sum('valor');
             $totalFind = $findMovimento->sum('valor');
-            if ($contaId != ""){
+            if ($contaId != "") {
                 $descConta = Conta::find($contaId);
-                $ContaDesc = $descConta->nome;  
-            }else{
+                $ContaDesc = $descConta->nome;
+            } else {
                 $ContaDesc = "";
             }
-            
+
             //dd($ContaDesc);
-            return view('movimentos.index', compact('findMovimento', 'totalMov', 'findConta','usuario','totalFind','pesquisar', 'dataIni','dataFim','contaId','ContaDesc'));
-        }else{
+            return view('movimentos.index', compact('findMovimento', 'totalMov', 'findConta', 'usuario', 'totalFind', 'pesquisar', 'dataIni', 'dataFim', 'contaId', 'ContaDesc'));
+        } else {
             return redirect()->route('login.index');
         }
     }
@@ -67,7 +68,7 @@ class MovimentosController extends Controller
             return redirect()->route('movimento.index');
         }
         $usuario = auth()->user()->name;
-        return view('movimentos.create', compact('findConta', 'findCategoria','usuario'));
+        return view('movimentos.create', compact('findConta', 'findCategoria', 'usuario'));
     }
 
     public function atualizarMovimento(FormRequestMovimento $request, $id)
@@ -96,6 +97,6 @@ class MovimentosController extends Controller
             $findMovimentoValor = ($findMovimento['valor']);
         }
         $usuario = auth()->user()->name;
-        return view('movimentos.atualiza', compact('findMovimento', 'findConta', 'findCategoria', 'findMovimentoValor','usuario'));
+        return view('movimentos.atualiza', compact('findMovimento', 'findConta', 'findCategoria', 'findMovimentoValor', 'usuario'));
     }
 }

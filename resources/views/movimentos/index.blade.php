@@ -61,10 +61,13 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                    
+
                                 </tbody>
                                 <div class="form-control">
-                                    Total Pesquisado: {{ 'R$' . ' ' . number_format($totalFind, 2, ',', '.') }} - {{ $pesquisar }} - De: {{ \Carbon\Carbon::parse($dataIni)->format('d/m/Y') }} a: {{ \Carbon\Carbon::parse($dataFim)->format('d/m/Y') }} - Conta: {{ $ContaDesc }}  | Saldo Total: {{ 'R$' . ' ' . number_format($totalMov, 2, ',', '.') }}
+                                    Total Pesquisado: {{ 'R$' . ' ' . number_format($totalFind, 2, ',', '.') }} -
+                                    {{ $pesquisar }} - De: {{ \Carbon\Carbon::parse($dataIni)->format('d/m/Y') }} a:
+                                    {{ \Carbon\Carbon::parse($dataFim)->format('d/m/Y') }} - Conta: {{ $ContaDesc }} |
+                                    Saldo Total: {{ 'R$' . ' ' . number_format($totalMov, 2, ',', '.') }}
                                 </div>
                             </table>
                             <div class="py-4">

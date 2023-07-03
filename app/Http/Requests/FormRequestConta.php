@@ -14,7 +14,7 @@ class FormRequestConta extends FormRequest
     public function rules(): array
     {
         $request = [];
-        if ($this->method() == "POST" || $this->method() == "PUT"){
+        if ($this->method() == "POST" || $this->method() == "PUT") {
             $request = [
                 'nome' => 'required',
             ];
