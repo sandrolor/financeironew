@@ -12,9 +12,11 @@ class PdfController extends Controller
     {
         if (auth()->check()) {
             $findMovimento = Movimento::all();
-            $findMovimento = $findMovimento->sortBy(['categoria','data_mov', 'descricao']);
+            $findMovimento = $findMovimento->sortBy(['data_mov', 'categoria', 'descricao']);
             $pdf = PDF::loadView('mypdf', compact('findMovimento'));
             return $pdf->setPaper('a4','landscape')->stream('mypdf.pdf');
+        } else {
+            return redirect()->route('login.index');
         }
     }
 }
