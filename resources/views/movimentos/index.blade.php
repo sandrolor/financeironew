@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Movimentos') }}</div>
+                    <div class="card-header">{{ __('Movimentos') }} - <a target="_blank" href="{{ route('mypdf') }}">Relatório em PDF</a></div>
                     <div class="card-body">
                         <form action="{{ route('movimento.index') }}" method="GET" class="form-inline">
                             <div class="form-group mx-sm-3">

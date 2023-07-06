@@ -5,9 +5,12 @@ use App\Http\Controllers\ContasController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MovimentosController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/mypdf', [PdfController::class, 'index'])->name('mypdf');
 
 Route::get('/', [LoginController::class, 'index'])->name('login.index');
 Route::post('/', [LoginController::class, 'store'])->name('login.store');
