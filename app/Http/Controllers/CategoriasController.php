@@ -37,7 +37,12 @@ class CategoriasController extends Controller
         if ($request->method() == "POST") {
             //cria os dados
             $data = $request->all();
-            Categoria::create($data);
+            $findCategoria = Categoria::where('nome', '=', $data['nome'])->first();
+
+            if ($findCategoria->nome == ""){
+                Categoria::create($data);
+            }
+
             return redirect()->route('categoria.index');
         }
         $usuario = auth()->user()->name;

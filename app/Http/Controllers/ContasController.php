@@ -6,6 +6,7 @@ use App\Http\Requests\FormRequestConta;
 use App\Models\Conta;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Empty_;
 
 class ContasController extends Controller
 {
@@ -39,7 +40,13 @@ class ContasController extends Controller
         if ($request->method() == "POST") {
             //cria os dados
             $data = $request->all();
-            Conta::create($data);
+
+            $findConta = Conta::where('nome', '=', $data['nome'])->first();
+
+            if ($findConta->nome == ""){
+                Conta::create($data);
+            }
+            
             return redirect()->route('conta.index');
         }
         $usuario = auth()->user()->name;
