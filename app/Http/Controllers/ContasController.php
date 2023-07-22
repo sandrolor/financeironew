@@ -43,7 +43,7 @@ class ContasController extends Controller
 
             $findConta = Conta::where('nome', '=', $data['nome'])->first();
 
-            if ($findConta->nome == ""){
+            if ($findConta == null){
                 Conta::create($data);
             }
             

@@ -34,9 +34,8 @@ class MovimentosController extends Controller
             } else {
                 $ContaDesc = "";
             }
-
-            //dd($ContaDesc);
-            return view('movimentos.index', compact('findMovimento', 'totalMov', 'findConta', 'usuario', 'totalFind', 'pesquisar', 'dataIni', 'dataFim', 'contaId', 'ContaDesc'));
+            $data_movGroup = $findMovimento->groupBy('data_mov');
+            return view('movimentos.index', compact('findMovimento', 'totalMov', 'findConta', 'usuario', 'totalFind', 'pesquisar', 'dataIni', 'dataFim', 'contaId', 'ContaDesc','data_movGroup'));
         } else {
             return redirect()->route('login.index');
         }
@@ -84,6 +83,10 @@ class MovimentosController extends Controller
 
             $buscaRegistro = Movimento::find($id);
             if ($data['tipoMov'] == "D") {
+                
+                $componentes = new Componentes();
+                $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
+            
                 $data['valor'] = ($data['valor']) * (-1);
             }
 

@@ -38,8 +38,8 @@ class CategoriasController extends Controller
             //cria os dados
             $data = $request->all();
             $findCategoria = Categoria::where('nome', '=', $data['nome'])->first();
-
-            if ($findCategoria->nome == ""){
+            
+            if ($findCategoria == null){
                 Categoria::create($data);
             }
 

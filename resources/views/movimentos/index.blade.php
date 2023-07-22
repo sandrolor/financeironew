@@ -4,7 +4,8 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Movimentos') }} - <a target="_blank" href="{{ route('mypdf') }}">Relatório em PDF</a></div>
+                    <div class="card-header">{{ __('Movimentos') }} - <a target="_blank" href="{{ route('mypdf') }}">Relatório
+                            em PDF</a></div>
                     <div class="card-body">
                         <form action="{{ route('movimento.index') }}" method="GET" class="form-inline">
                             <div class="form-group mx-sm-3">
@@ -30,7 +31,6 @@
                             <table class="table table-striped table-sm">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Data</th>
                                         <th scope="col">Descrição</th>
                                         <th scope="col">Conta</th>
                                         <th scope="col">Categoria</th>
@@ -39,29 +39,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($findMovimento as $movimento)
-                                        <tr>
-                                            <td>{{ \Carbon\Carbon::parse($movimento->data_mov)->format('d/m/Y') }}</td>
-                                            <td>{{ $movimento->descricao }}</td>
-                                            <td>{{ $movimento->conta->nome }}</td>
-                                            <td>{{ $movimento->categoria->nome }}</td>
-                                            <td>{{ 'R$' . ' ' . number_format($movimento->valor, 2, ',', '.') }}</td>
+                                    <tr>
+                                        @foreach ($data_movGroup as $data_mov => $data_movGroupInData_mov)
                                             <td>
-                                                <a href="{{ route('atualizar.movimento', $movimento->id) }}"
-                                                    class="btn btn-light btn-sm">Editar</a>
-                                                <form method="POST"
-                                                    action="{{ route('movimento.delete', $movimento->id) }}"
-                                                    accept-charset="UTF-8" style="display:inline">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        onclick="return confirm(&quot;Confirm delete?&quot;)"><i
-                                                            class="fa fa-trash-o" aria-hidden="true"></i> Excluir</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                {{ \Carbon\Carbon::parse($data_mov)->format('d/m/Y') }}
 
+                                                @foreach ($data_movGroupInData_mov as $movimento)
+                                                    <tr>
+                                                        <td>{{ $movimento->descricao }}</td>
+                                                        <td>{{ $movimento->conta->nome }}</td>
+                                                        <td>{{ $movimento->categoria->nome }}</td>
+                                                        <td>{{ 'R$' . ' ' . number_format($movimento->valor, 2, ',', '.') }}</td>
+                                                        <td>
+                                                            <a href="{{ route('atualizar.movimento', $movimento->id) }}"
+                                                                class="btn btn-light btn-sm">Editar</a>
+                                                            <form method="POST" action="{{ route('movimento.delete', $movimento->id) }}"
+                                                                accept-charset="UTF-8" style="display:inline">
+                                                                {{ method_field('DELETE') }}
+                                                                {{ csrf_field() }}
+                                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                                    onclick="return confirm(&quot;Confirm delete?&quot;)"><i
+                                                                        class="fa fa-trash-o" aria-hidden="true"></i> Excluir</button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </td>
+                                        @endforeach
+                                    </tr>
                                 </tbody>
                                 <div class="form-control">
                                     Total Pesquisado: {{ 'R$' . ' ' . number_format($totalFind, 2, ',', '.') }} -
